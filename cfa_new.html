@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script src="../navbar.js"></script> -->
+    <div class="container">
+      <div class="row justify-content-center">
+          <img
+          src="https://www.chick-fil-a.com/-/media/images/cfacom/default-images/chick-fil-a-logo-vector.ashx" style = "max-height: 200px;"
+        />
+      </div>
+      <div class="row justify-content-center text-center mt-2">
+          <h4>Chick-fil-a Rewards Value (unofficial)</h1>
+      </div>
+      <!-- <div class="row justify-content-center mt-3">
+        <input
+          placeholder="Zip Code"
+          type="text"
+          id="zip"
+          pattern="[0-9]{5}"
+          maxlength="5"
+        />
+        </div> -->
+        <div class="row my-3">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter by Item Type
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Entrees</a></li>
+              <li><a class="dropdown-item" href="#">Breakfast</a></li>
+              <li><a class="dropdown-item" href="#">Sides</a></li>
+              <li><a class="dropdown-item" href="#">Desserts</a></li>
+              <li><a class="dropdown-item" href="#">Beverages</a></li>
+            </ul>
+            <button class="btn btn-secondary" type="button" id="resetBtn" aria-expanded="false">
+              Reset
+            </button>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+            <table id="cfaTable" class="table">
+              <thead><tr>
+                <th id="item">Item</th>
+                <th id="price">Price</th>
+                <th id="reward">Reward Point Cost</th>
+                <th id="pointsPer">Points/$</th>
+              </tr>
+            </thead>
+            </table>
+        </div>
+    </div>
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>
