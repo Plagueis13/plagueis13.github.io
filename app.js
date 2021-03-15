@@ -35,7 +35,7 @@ function fillTable() {
   .then((downloadData) => {
     downloadData.forEach(jsonReader);
   })
-  .then(sortTable)
+  .then(sortTable);
   // .then(paintTable);
 }
 
