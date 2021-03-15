@@ -55,6 +55,7 @@ function jsonReader(item, index) {
 }
 
 function sortTable() {
+  console.log("sorting");
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("cfaTable");
   switching = true;
