@@ -3,6 +3,7 @@ const item = document.getElementById('item'),
 price = document.getElementById('price'),
 reward = document.getElementById('reward'),
 pointsPer = document.getElementById('pointsPer'),
+filter = document.getElementById('filter'),
 resetBtn = document.getElementById('resetBtn');
 item.addEventListener("click", function() {
   console.log('hello');
@@ -20,9 +21,13 @@ pointsPer.addEventListener("click", function() {
   console.log('hello');
   clickSort(3)
 });
-resetBtn.addEventListener("click", function(){
-  console.log("hello")
+
+resetBtn.addEventListener("click", () => {
+  window.location.reload();
 });
+filter.addEventListener('change', (e) => {
+  filterType(e);
+  });
 
 async function downloadItems() {
   const response = await fetch ('cfa_rewards.json');
@@ -35,7 +40,7 @@ function fillTable() {
   .then((downloadData) => {
     downloadData.forEach(jsonReader);
   })
-  .then(sortTable);
+  // .then(sortTable);
   // .then(paintTable);
 }
 
@@ -45,17 +50,17 @@ function jsonReader(item, index) {
     category = item.dayPart;
   } else {
     category = item.itemType;
-  }
-  document.querySelector("#cfaTable").innerHTML += `<tr class ="${category}">
-        <td>${item.name}</td>
-        <td>$ ${item.price}</td>
-        <td>${item.points}</td>
-        <td>${(item.points/item.price).toFixed(2)}</td>
+  };
+  document.getElementById("cfaTable").innerHTML += `
+    <tr class ="${category}">
+        <td class="align-middle">${item.name}</td>
+        <td class="align-middle">${item.price}</td>
+        <td class="align-middle">${item.points}</td>
+        <td class="align-middle">${(item.points/item.price).toFixed(2)}</td>
       </tr>`;
 }
 
 function sortTable() {
-  console.log("sorting");
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("cfaTable");
   switching = true;
@@ -158,6 +163,36 @@ function clickSort(n) {
   }
 }
 
-function filterType() {
-
+function filterType(e) {
+  let rows = document.querySelectorAll(`#cfaTable>tr`);
+  rows.forEach(function(row){
+    row.classList.add('d-none');
+  })
+  if(e.target.value === "Breakfast") {
+    let newRows = document.querySelectorAll(`.${e.target.value}`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  } else if(e.target.value === "entrees") {
+    let newRows = document.querySelectorAll(`.ENTREES_GROUP`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  } else if(e.target.value === "sides") {
+    let newRows = document.querySelectorAll(`.SIDES_GROUP`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  } else if(e.target.value === "treats") {
+    let newRows = document.querySelectorAll(`.DESSERTS_GROUP`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  } else if(e.target.value === "beverages") {
+    let newRows = document.querySelectorAll(`.BEVERAGES_GROUP`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  }
+  sortTable();
 }

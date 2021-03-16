@@ -31,31 +31,28 @@
         />
         </div> -->
         <div class="row my-3">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Filter by Item Type
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Entrees</a></li>
-              <li><a class="dropdown-item" href="#">Breakfast</a></li>
-              <li><a class="dropdown-item" href="#">Sides</a></li>
-              <li><a class="dropdown-item" href="#">Desserts</a></li>
-              <li><a class="dropdown-item" href="#">Beverages</a></li>
-            </ul>
+            <select id="filter" class="form-select btn btn-secondary" aria-label="Default select example">
+              <option selected>Filter by Item Type</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="entrees">Entrees</option>
+              <option value="sides">Sides</option>
+              <option value="treats">Treats</option>
+              <option value="beverages">Beverages</option>
+            </select>
             <button class="btn btn-secondary" type="button" id="resetBtn" aria-expanded="false">
               Reset
             </button>
-          </div>
         </div>
         <div class="row justify-content-center">
-            <table id="cfaTable" class="table">
+            <table class="table">
               <thead><tr>
                 <th id="item">Item</th>
                 <th id="price">Price</th>
-                <th id="reward">Point Cost</th>
+                <th id="reward">Points</th>
                 <th id="pointsPer">Points/$</th>
               </tr>
             </thead>
+            <tbody id="cfaTable"></tbody>
             </table>
         </div>
     </div>
