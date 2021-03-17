@@ -1,0 +1,40 @@
+nav {
+  display:grid; 
+  align-items:center; 
+  justify-content:center;
+  min-height: 50px;
+  background-color: #e01c43;
+  color: white;
+}
+
+.table-primary, .table-primary>th, .table-primary>td {
+  background-color: #1ca5e0;
+}
+
+.table-hover .table-primary:hover {
+  background-color: #1ca5e0;
+}
+
+.table-hover .table-primary th:hover {
+  background-color: #5ec0eb;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1ca5e0;
+  border-color: #1ca5e0;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus  {
+  color: #fff;
+  background-color: #5ec0eb;
+  border-color: #5ec0eb;
+}
+
+th {
+  cursor: pointer;
+}
+
+#resetBtn {
+  min-width: 115px;
+}

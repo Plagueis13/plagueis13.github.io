@@ -12,15 +12,14 @@
 </head>
 <body>
   <!-- <script src="../navbar.js"></script> -->
+  <nav>
     <div class="container">
-      <div class="row justify-content-center">
-          <img
-          src="https://www.chick-fil-a.com/-/media/images/cfacom/default-images/chick-fil-a-logo-vector.ashx" style = "max-height: 100px;"
-        />
-      </div>
-      <div class="row justify-content-center text-center mt-2">
-          <h4>Chick-fil-a Rewards Value (unofficial)</h1>
-      </div>
+      <div class="row">
+        <h4 class="m-0">Chick-fil-a Rewards Value</h1>
+      </div>  
+    </div>
+  </nav>
+    <div class="container">
       <!-- <div class="row justify-content-center mt-3">
         <input
           placeholder="Zip Code"
@@ -32,19 +31,19 @@
         </div> -->
         <div class="row justify-content-center my-3">
             <select id="filter" class="form-select btn btn-primary" aria-label="Default select example">
-              <option selected>Filter by Item Type</option>
+              <option selected>Filter</option>
               <option value="Breakfast">Breakfast</option>
               <option value="entrees">Entrees</option>
               <option value="sides">Sides</option>
               <option value="treats">Treats</option>
               <option value="beverages">Beverages</option>
             </select>
-            <button class="btn btn-primary" type="button" id="resetBtn" aria-expanded="false">
+            <button class="btn btn-primary ml-3" type="button" id="resetBtn" aria-expanded="false">
               Reset
             </button>
         </div>
         <div class="row justify-content-center">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover">
               <thead class="table-primary">
                 <tr>
                   <th id="item">Item</th>
