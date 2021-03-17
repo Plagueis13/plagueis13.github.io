@@ -4,7 +4,7 @@ price = document.getElementById('price'),
 reward = document.getElementById('reward'),
 pointsPer = document.getElementById('pointsPer'),
 table = document.getElementById('cfaTable'),
-filter = document.getElementById('filter'),
+filter = document.getElementById('filterMenu'),
 resetBtn = document.getElementById('resetBtn');
 item.addEventListener("click", function() {
   sortTable(0)
@@ -22,7 +22,7 @@ pointsPer.addEventListener("click", function() {
 resetBtn.addEventListener("click", () => {
   window.location.reload();
 });
-filter.addEventListener('change', (e) => {
+filter.addEventListener('click', (e) => {
   filterType(e);
   });
 
@@ -79,27 +79,27 @@ function filterType(e) {
   rows.forEach(function(row){
     row.classList.add('d-none');
   })
-  if(e.target.value === "Breakfast") {
-    let newRows = document.querySelectorAll(`.${e.target.value}`);
+  if(e.target.id === "breakfast") {
+    let newRows = document.querySelectorAll(`.Breakfast`);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })
-  } else if(e.target.value === "entrees") {
+  } else if(e.target.id === "entrees") {
     let newRows = document.querySelectorAll(`.ENTREES_GROUP`);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })
-  } else if(e.target.value === "sides") {
+  } else if(e.target.id === "sides") {
     let newRows = document.querySelectorAll(`.SIDES_GROUP`);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })
-  } else if(e.target.value === "treats") {
+  } else if(e.target.id === "treats") {
     let newRows = document.querySelectorAll(`.DESSERTS_GROUP`);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })
-  } else if(e.target.value === "beverages") {
+  } else if(e.target.id === "beverages") {
     let newRows = document.querySelectorAll(`.BEVERAGES_GROUP`);
     newRows.forEach(row => {
       row.classList.remove('d-none');

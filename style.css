@@ -25,16 +25,17 @@ nav {
   border-color: #1ca5e0;
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus  {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show>.btn-primary.dropdown-toggle, .show>.btn-primary.dropdown-toggle:focus  {
   color: #fff;
   background-color: #5ec0eb;
   border-color: #5ec0eb;
+  box-shadow: none;
 }
 
 th {
   cursor: pointer;
 }
 
-#resetBtn {
-  min-width: 115px;
+.btn-primary {
+  min-width: 78px;
 }
