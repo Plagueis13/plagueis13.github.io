@@ -3,23 +3,20 @@ const item = document.getElementById('item'),
 price = document.getElementById('price'),
 reward = document.getElementById('reward'),
 pointsPer = document.getElementById('pointsPer'),
+table = document.getElementById('cfaTable'),
 filter = document.getElementById('filter'),
 resetBtn = document.getElementById('resetBtn');
 item.addEventListener("click", function() {
-  console.log('hello');
-  clickSort(1)
+  sortTable(0)
 });
 price.addEventListener("click", function() {
-  console.log('hello');
-  clickSort(1)
+  sortTable(1)
 });
 reward.addEventListener("click", function() {
-  console.log('hello');
-  clickSort(2)
+  sortTable(2)
 });
 pointsPer.addEventListener("click", function() {
-  console.log('hello');
-  clickSort(3)
+  sortTable(3)
 });
 
 resetBtn.addEventListener("click", () => {
@@ -35,132 +32,46 @@ async function downloadItems() {
   return responseData;
 };
 
-function fillTable() {
-  downloadItems()
-  .then((downloadData) => {
-    downloadData.forEach(jsonReader);
-  })
-  // .then(sortTable);
-  // .then(paintTable);
+async function fillTable() {
+  const downloadData = await downloadItems();
+  downloadData.forEach(jsonReader);
+  sortTable(3);
 }
 
-function jsonReader(item, index) {
+function jsonReader(item) {
   let category;
   if(item.dayPart==="Breakfast"){
     category = item.dayPart;
   } else {
     category = item.itemType;
   };
-  document.getElementById("cfaTable").innerHTML += `
-    <tr class ="${category}">
-        <td class="align-middle">${item.name}</td>
-        <td class="align-middle">${item.price}</td>
-        <td class="align-middle">${item.points}</td>
-        <td class="align-middle">${(item.points/item.price).toFixed(2)}</td>
-      </tr>`;
+  let tr = document.createElement("TR");
+  tr.classList.add(category,"table-light");
+  tr.innerHTML = `
+      <td class="align-middle">${item.name}</td>
+      <td class="align-middle">${item.price}</td>
+      <td class="align-middle">${item.points}</td>
+      <td class="align-middle">${(item.points/item.price).toFixed(2)}</td>`
+  document.getElementById("cfaTable").appendChild(tr);
 }
 
-function sortTable() {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("cfaTable");
-  switching = true;
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[3];
-      y = rows[i + 1].getElementsByTagName("TD")[3];
-      // Check if the two rows should switch place:
-      if (Number(x.innerHTML) > Number(y.innerHTML)) {
-        // If so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
+function sortTable(n) {
+  const sortedListOfRows = [...table.rows]
+    .sort((a,b) => {
+      let aValue,
+      bValue;
+      if(n===0) {
+        aValue = a.children.item(n).innerHTML,
+        bValue = b.children.item(n).innerHTML;
+      } else {
+        aValue = Number(a.children.item(n).innerHTML),
+        bValue = Number(b.children.item(n).innerHTML);
       }
-    }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
-
-function clickSort(n) {
-  console.log("hello");
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("cfaTable");
-  switching = true;
-  // Set the sorting direction to ascending:
-  dir = "asc";
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-      if (dir == "asc" && (n=0)) {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc" && (n=0)) {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir =='asc') {
-        if (Number(x.innerHTML) > Number(y.innerHTML)) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir =='desc') {
-        if (Number(x.innerHTML) < Number(y.innerHTML)) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      // Each time a switch is done, increase this count by 1:
-      switchcount ++;
-    } else {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
+      return aValue > bValue ? 1 : -1
+    })
+    .forEach(tr => {
+      table.appendChild(tr);
+    });
 }
 
 function filterType(e) {
@@ -194,5 +105,5 @@ function filterType(e) {
       row.classList.remove('d-none');
     })
   }
-  sortTable();
+  sortTable(3);
 }

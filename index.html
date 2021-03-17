@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="../favicon.png" />
   <title>Chick-Fil-A Rewards Value List
@@ -30,8 +30,8 @@
           maxlength="5"
         />
         </div> -->
-        <div class="row my-3">
-            <select id="filter" class="form-select btn btn-secondary" aria-label="Default select example">
+        <div class="row justify-content-center my-3">
+            <select id="filter" class="form-select btn btn-primary" aria-label="Default select example">
               <option selected>Filter by Item Type</option>
               <option value="Breakfast">Breakfast</option>
               <option value="entrees">Entrees</option>
@@ -39,20 +39,21 @@
               <option value="treats">Treats</option>
               <option value="beverages">Beverages</option>
             </select>
-            <button class="btn btn-secondary" type="button" id="resetBtn" aria-expanded="false">
+            <button class="btn btn-primary" type="button" id="resetBtn" aria-expanded="false">
               Reset
             </button>
         </div>
         <div class="row justify-content-center">
-            <table class="table">
-              <thead><tr>
-                <th id="item">Item</th>
-                <th id="price">Price</th>
-                <th id="reward">Points</th>
-                <th id="pointsPer">Points/$</th>
-              </tr>
-            </thead>
-            <tbody id="cfaTable"></tbody>
+            <table class="table table-hover table-sm">
+              <thead class="table-primary">
+                <tr>
+                  <th id="item">Item</th>
+                  <th id="price">Price</th>
+                  <th id="reward">Points</th>
+                  <th id="pointsPer">Points/$</th>
+                </tr>
+              </thead>
+              <tbody id="cfaTable"></tbody>
             </table>
         </div>
     </div>
