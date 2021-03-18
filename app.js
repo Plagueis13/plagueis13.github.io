@@ -20,7 +20,12 @@ pointsPer.addEventListener("click", function() {
 });
 
 resetBtn.addEventListener("click", () => {
-  window.location.reload();
+  let newRows = document.querySelectorAll(`#cfaTable>tr`);
+  newRows.forEach(row => {
+    row.classList.remove('d-none');
+  })
+  sortTable(3);
+
 });
 filter.addEventListener('click', (e) => {
   filterType(e);
@@ -101,6 +106,12 @@ function filterType(e) {
     })
   } else if(e.target.id === "beverages") {
     let newRows = document.querySelectorAll(`.BEVERAGES_GROUP`);
+    newRows.forEach(row => {
+      row.classList.remove('d-none');
+    })
+  } else if(e.target.id === "all") {
+    let newRows = document.querySelectorAll(`#cfaTable>tr`);
+    console.log(newRows);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })
