@@ -22,8 +22,11 @@ pointsPer.addEventListener("click", function() {
 });
 
 changeForm.addEventListener("submit", (e) => {
-  const uiLocale = document.querySelector('input:checked').value;
-  localStorage.setItem('locale', uiLocale);
+  const uiLocale = document.querySelector('input:checked'),
+  localeValue = uiLocale.value;
+  localeCity = uiLocale.dataset.city;
+  localStorage.setItem('locale', localeValue);
+  localStorage.setItem('city', localeCity);
   $("#locModal").modal("hide");
   fillTable();
   e.preventDefault();
@@ -43,6 +46,7 @@ filter.addEventListener('click', (e) => {
 
 async function fillTable() {
   locale.getLocationData();
+  changeBtn.innerText = locale.city;
   const downloadData = await locale.downloadItems();
   table.innerHTML='';
   downloadData.forEach(jsonReader);

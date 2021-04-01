@@ -1,14 +1,18 @@
 class Locale{
   constructor() { 
     this.locale;
-    this.defaultLocale = 'dal'
+    this.defaultLocale = 'dal';
+    this.city;
+    this.defaultCity = 'Dallas';
   }
 
   getLocationData() {
     if(localStorage.getItem('locale') === null) {
       this.locale = this.defaultLocale;
+      this.city = this.defaultCity;
     } else {
       this.locale = localStorage.getItem('locale');
+      this.city = localStorage.getItem('city');
     }
     return this.locale;
   
