@@ -18,61 +18,122 @@
   <nav>
     <div class="container">
       <div class="row">
-        <h4 class="m-0">Chick-fil-a Rewards Value</h1>
+        <h4 class="m-0">Chick-fil-a Rewards Value</h4>
       </div>  
     </div>
   </nav>
-    <div class="container">
-      <!-- <div class="row justify-content-center mt-3">
-        <input
-          placeholder="Zip Code"
-          type="text"
-          id="zip"
-          pattern="[0-9]{5}"
-          maxlength="5"
-        />
-        </div> -->
-        <div class="row justify-content-center my-3">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Filter
-              </button>
-              <div class="dropdown-menu" id="filterMenu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" id="all">All</a>
-                <a class="dropdown-item" id="breakfast">Breakfast</a>
-                <a class="dropdown-item" id="entrees">Entrees</a>
-                <a class="dropdown-item" id="sides">Sides</a>
-                <a class="dropdown-item" id="treats">Treats</a>
-                <a class="dropdown-item" id="beverages">Beverages</a>
-              </div>
-            </div>
-            <button class="btn btn-primary ml-3" type="button" id="resetBtn" aria-expanded="false">
-              Reset
-            </button>
-            <a href="https://venmo.com/code?user_id=1814720889749504792">
-            <button class="btn btn-primary ml-3 d-lg-none" type="button" id="venmoBtn" aria-expanded="false">
-              Donate
-            </button>
-            </a>
+  <div class="container">
+    <div class="row justify-content-center my-3" id="btnRow">
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle mx-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter
+          </button>
+          <div class="dropdown-menu" id="filterMenu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" id="all">All</a>
+            <a class="dropdown-item" id="breakfast">Breakfast</a>
+            <a class="dropdown-item" id="entrees">Entrees</a>
+            <a class="dropdown-item" id="sides">Sides</a>
+            <a class="dropdown-item" id="treats">Treats</a>
+            <a class="dropdown-item" id="beverages">Beverages</a>
+          </div>
         </div>
-        <div class="row justify-content-center">
-            <table class="table table-hover table-sm">
-              <thead class="table-primary">
-                <tr>
-                  <th id="item">Item</th>
-                  <th id="price">Price</th>
-                  <th id="reward">Points</th>
-                  <th id="pointsPer">Points/$</th>
-                </tr>
-              </thead>
-              <tbody id="cfaTable"></tbody>
-            </table>
-        </div>
+
+
+        <!-- <button class="btn btn-primary" type="button" id="resetBtn" aria-expanded="false">
+          Reset
+        </button> -->
+
+
+        <button
+          type="button"
+          id="changeBtn"
+          class="btn btn-primary mx-1"
+          data-toggle="modal"
+          data-target="#locModal"
+        >
+          Location
+        </button>
+
+
+        <a href="https://venmo.com/code?user_id=1814720889749504792" class="d-md-none">
+          <button class="btn btn-primary" type="button" id="venmoBtn" aria-expanded="false">
+            Donate
+          </button>
+        </a>
+
     </div>
+
+    <div class="row justify-content-center">
+      <table class="table table-hover table-sm">
+        <thead class="table-primary">
+          <tr>
+            <th id="item">Item</th>
+            <th id="price">Price</th>
+            <th id="reward">Points</th>
+            <th id="pointsPer">Points/$</th>
+          </tr>
+        </thead>
+        <tbody id="cfaTable">
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="locModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="locModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="display:block">
+          <h4 class="modal-title" id="locModalLabel">Choose Location</h4>
+          <h6>Prices are based on specific stores, but should be similar to nearby stores</h6>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="changeForm">
+            <div class="form-group">
+              <input type="radio" id="atl" name="location" value="atl">
+              <label for="atl">Atlanta (Colony Square)</label><br>
+              <input type="radio" id="dal" name="location" value="dal">
+              <label for="dal">Dallas (Central & SW)</label><br>
+              <input type="radio" id="ny" name="location" value="ny">
+              <label for="ny">New York City (46th and 6th)</label><br>
+              <input type="radio" id="sf" name="location" value="sf">
+              <label for="sf">San Francisco (Sunnyvale)</label>
+            </div>
+            <div class="modal-footer">
+              <button
+            id="close-btn"
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <input id="change-btn" type="submit" class="btn btn-primary" value="Update Location"></input>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+    <script src="locale.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

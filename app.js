@@ -1,11 +1,13 @@
-document.addEventListener("DOMContentLoaded", fillTable);
-const item = document.getElementById('item'),
+const locale = new Locale(),
+item = document.getElementById('item'),
 price = document.getElementById('price'),
 reward = document.getElementById('reward'),
 pointsPer = document.getElementById('pointsPer'),
 table = document.getElementById('cfaTable'),
 filter = document.getElementById('filterMenu'),
+changeBtn = document.getElementById('changeBtn'),
 resetBtn = document.getElementById('resetBtn');
+document.addEventListener("DOMContentLoaded", fillTable);
 item.addEventListener("click", function() {
   sortTable(0)
 });
@@ -19,29 +21,34 @@ pointsPer.addEventListener("click", function() {
   sortTable(3)
 });
 
-resetBtn.addEventListener("click", () => {
-  let newRows = document.querySelectorAll(`#cfaTable>tr`);
-  newRows.forEach(row => {
-    row.classList.remove('d-none');
-  })
-  sortTable(3);
-
+changeForm.addEventListener("submit", (e) => {
+  const uiLocale = document.querySelector('input:checked').value;
+  localStorage.setItem('locale', uiLocale);
+  $("#locModal").modal("hide");
+  fillTable();
+  e.preventDefault();
 });
+
+// resetBtn.addEventListener("click", () => {
+//   let newRows = document.querySelectorAll(`#cfaTable>tr`);
+//   newRows.forEach(row => {
+//     row.classList.remove('d-none');
+//   })
+//   sortTable(3);
+
+// });
 filter.addEventListener('click', (e) => {
   filterType(e);
   });
 
-async function downloadItems() {
-  const response = await fetch ('cfa_rewards.json');
-  const responseData = await response.json();
-  return responseData;
-};
-
 async function fillTable() {
-  const downloadData = await downloadItems();
+  locale.getLocationData();
+  const downloadData = await locale.downloadItems();
+  table.innerHTML='';
   downloadData.forEach(jsonReader);
   sortTable(3);
 }
+
 
 function jsonReader(item) {
   let category;
@@ -57,7 +64,7 @@ function jsonReader(item) {
       <td class="align-middle">${item.price}</td>
       <td class="align-middle">${item.points}</td>
       <td class="align-middle">${(item.points/item.price).toFixed(2)}</td>`
-  document.getElementById("cfaTable").appendChild(tr);
+  table.appendChild(tr);
 }
 
 function sortTable(n) {
@@ -111,7 +118,6 @@ function filterType(e) {
     })
   } else if(e.target.id === "all") {
     let newRows = document.querySelectorAll(`#cfaTable>tr`);
-    console.log(newRows);
     newRows.forEach(row => {
       row.classList.remove('d-none');
     })

@@ -37,5 +37,11 @@ th {
 }
 
 .btn-primary {
-  min-width: 78px;
+  min-width: 82.52px;
 }
+
+/* #btnRow {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3,1fr);
+} */
