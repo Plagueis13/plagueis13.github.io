@@ -7,7 +7,7 @@ class Locale{
   }
 
   getLocationData() {
-    if(localStorage.getItem('locale') === null) {
+    if(localStorage.getItem('locale') === null || localStorage.getItem('city') === null) {
       this.locale = this.defaultLocale;
       this.city = this.defaultCity;
     } else {
